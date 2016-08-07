@@ -9,14 +9,14 @@ public:
 	CooperHewittAPI();
 	~CooperHewittAPI();
 
-	string apiCall(string apiToken, string apiMethod, map<string, string> args);
+	string apiCall(string apiMethod, map<string, string> args);
 
 protected:
 
+	string requestMethod;
 	string apiEndpoint;
-	string apiToken;
 
-	string apiMethod;
+	string apiGetCall(string apiMethod, map<string, string> args);
+	string buildRequestURL(string apiMethod, map<string, string> args);
 
-	map<string, string> args;
 };

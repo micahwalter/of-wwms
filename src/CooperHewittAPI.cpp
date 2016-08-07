@@ -3,20 +3,43 @@
 
 CooperHewittAPI::CooperHewittAPI() {
 
+	apiEndpoint = "https://api.collection.cooperhewitt.org/rest/";
+	requestMethod = "GET";
+
 }
 
 CooperHewittAPI::~CooperHewittAPI() {
 
 }
 
-string CooperHewittAPI::apiCall(string apiToken, string apiMethod, map<string, string> args) {
+string CooperHewittAPI::apiCall(string apiMethod, map<string, string> args) {
 
-	string endpoint = "https://api.collection.cooperhewitt.org/rest/";
+	string rsp;
 
-	string url = endpoint + "?" + "method=" + apiMethod + "&access_token=" +apiToken;
+	if (requestMethod == "GET") {
+		rsp = apiGetCall(apiMethod, args);
+	}
 
+	return rsp;
+}
+
+string CooperHewittAPI::apiGetCall(string apiMethod, map<string, string> args)
+{
+	string url = buildRequestURL(apiMethod, args);
 	ofHttpResponse resp = ofLoadURL(url);
-	ofLog() << "From the class: " << resp.data << endl;
+	ofLog() << "apiGetCall response: " << resp.data << endl;
 
 	return resp.data;
 }
+
+string CooperHewittAPI::buildRequestURL(string apiMethod, map<string, string> args)
+{
+	string url = apiEndpoint + "?" + "method=" + apiMethod;
+
+	for (std::map<string, string>::iterator it = args.begin(); it != args.end(); ++it)
+		url += "&" + it->first + "=" + it->second;
+
+	return url;
+}
+
+

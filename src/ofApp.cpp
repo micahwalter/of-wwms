@@ -8,14 +8,15 @@ void ofApp::setup(){
 	ofFile apiSettings;
 
 	apiSettings.open(ofToDataPath("api_settings.txt"), ofFile::ReadWrite, false);
-	ofBuffer buff = apiSettings.readToBuffer();
+	ofBuffer access_token = apiSettings.readToBuffer();
 	
-	string token = buff;
-	string method = "cooperhewitt.labs.whatWouldMicahSay";
-	map<string, string> args;
-
 	CooperHewittAPI ch_api;
-	apiResponse = ch_api.apiCall(token, method, args);
+
+	map<string, string> args;
+	args["access_token"] = access_token;
+	string method = "cooperhewitt.labs.whatWouldMicahSay";
+
+	apiResponse = ch_api.apiCall(method, args);
 
 }
 
