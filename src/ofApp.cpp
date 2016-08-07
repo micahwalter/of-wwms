@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "CooperHewittAPI.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -10,16 +11,11 @@ void ofApp::setup(){
 	ofBuffer buff = apiSettings.readToBuffer();
 	
 	string token = buff;
-
-	string endpoint = "https://api.collection.cooperhewitt.org/rest/";
 	string method = "cooperhewitt.labs.whatWouldMicahSay";
+	map<string, string> args;
 
-	string url = endpoint + "?" + "method=" + method + "&access_token=" + token;
-
-	ofHttpResponse resp = ofLoadURL(url);
-	ofLog() << resp.data << endl;
-
-	apiResponse = resp.data;
+	CooperHewittAPI ch_api;
+	apiResponse = ch_api.apiCall(token, method, args);
 
 }
 
