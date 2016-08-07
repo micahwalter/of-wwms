@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxJSON.h"
-#include "CooperHewittAPI.h"
+#include "ofxCooperHewittAPI.h"
 
 
 class ofApp : public ofBaseApp{
@@ -24,7 +24,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		CooperHewittAPI ch_api;
+		ofxCooperHewittAPI ch_api;
 		ofxJSONElement apiResponse;
 		
 };

@@ -1,1 +1,2 @@
+ofxCooperHewittAPI
 ofxJSON
