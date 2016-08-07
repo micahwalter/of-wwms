@@ -23,6 +23,11 @@ string CooperHewittAPI::apiCall(string apiMethod, map<string, string> args) {
 	return rsp;
 }
 
+void CooperHewittAPI::setAPIEndpoint(string endpoint)
+{
+	apiEndpoint = endpoint;
+}
+
 string CooperHewittAPI::apiGetCall(string apiMethod, map<string, string> args)
 {
 	string url = buildRequestURL(apiMethod, args);

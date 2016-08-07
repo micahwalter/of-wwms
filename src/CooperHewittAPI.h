@@ -10,6 +10,7 @@ public:
 	~CooperHewittAPI();
 
 	string apiCall(string apiMethod, map<string, string> args);
+	void setAPIEndpoint(string endpoint);
 
 protected:
 
