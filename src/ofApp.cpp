@@ -1,5 +1,4 @@
 #include "ofApp.h"
-#include "CooperHewittAPI.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -10,8 +9,6 @@ void ofApp::setup(){
 	apiSettings.open(ofToDataPath("api_settings.txt"), ofFile::ReadWrite, false);
 	ofBuffer access_token = apiSettings.readToBuffer();
 	
-	CooperHewittAPI ch_api;
-
 	map<string, string> args;
 	args["access_token"] = access_token;
 	string method = "cooperhewitt.labs.whatWouldMicahSay";
@@ -26,12 +23,12 @@ void ofApp::update(){
 }
 
 //--------------------------------------------------------------
-void ofApp::draw(){
+void ofApp::draw() {
 
 	ofClear(0);
 	ofDrawBitmapString("Hello World!", 100, 100);
 
-	ofDrawBitmapString(apiResponse, 100, 120);
+	ofDrawBitmapString(apiResponse["micah"]["says"].asString(), 100, 120);
 }
 
 //--------------------------------------------------------------

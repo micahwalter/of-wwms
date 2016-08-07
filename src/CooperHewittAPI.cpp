@@ -12,9 +12,9 @@ CooperHewittAPI::~CooperHewittAPI() {
 
 }
 
-string CooperHewittAPI::apiCall(string apiMethod, map<string, string> args) {
+ofxJSONElement CooperHewittAPI::apiCall(string apiMethod, map<string, string> args) {
 
-	string rsp;
+	ofxJSONElement rsp;
 
 	if (requestMethod == "GET") {
 		rsp = apiGetCall(apiMethod, args);
@@ -28,13 +28,19 @@ void CooperHewittAPI::setAPIEndpoint(string endpoint)
 	apiEndpoint = endpoint;
 }
 
-string CooperHewittAPI::apiGetCall(string apiMethod, map<string, string> args)
+void CooperHewittAPI::setAPIArgs(map<string, string> args)
+{
+	apiArgs = args;
+}
+
+ofxJSONElement CooperHewittAPI::apiGetCall(string apiMethod, map<string, string> args)
 {
 	string url = buildRequestURL(apiMethod, args);
-	ofHttpResponse resp = ofLoadURL(url);
-	ofLog() << "apiGetCall response: " << resp.data << endl;
+	apiResponse.open(url);
 
-	return resp.data;
+	ofLog() << "apiGetCall response: " << apiResponse.getRawString();
+
+	return apiResponse;
 }
 
 string CooperHewittAPI::buildRequestURL(string apiMethod, map<string, string> args)

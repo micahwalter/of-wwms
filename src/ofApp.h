@@ -1,6 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxJSON.h"
+#include "CooperHewittAPI.h"
+
 
 class ofApp : public ofBaseApp{
 
@@ -21,6 +24,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		string apiResponse;
+		CooperHewittAPI ch_api;
+		ofxJSONElement apiResponse;
 		
 };
