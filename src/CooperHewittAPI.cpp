@@ -33,6 +33,11 @@ void CooperHewittAPI::setAPIArgs(map<string, string> args)
 	apiArgs = args;
 }
 
+map<string, string> CooperHewittAPI::getAPIArgs()
+{
+	return apiArgs;
+}
+
 ofxJSONElement CooperHewittAPI::apiGetCall(string apiMethod, map<string, string> args)
 {
 	string url = buildRequestURL(apiMethod, args);

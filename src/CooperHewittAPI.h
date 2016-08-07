@@ -13,6 +13,7 @@ public:
 	ofxJSONElement apiCall(string apiMethod, map<string, string> args);
 	void setAPIEndpoint(string endpoint);
 	void setAPIArgs(map<string, string> args);
+	map<string, string> getAPIArgs();
 
 protected:
 

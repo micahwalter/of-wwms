@@ -13,6 +13,8 @@ void ofApp::setup(){
 	args["access_token"] = access_token;
 	string method = "cooperhewitt.labs.whatWouldMicahSay";
 
+	ch_api.setAPIArgs(args);
+
 	apiResponse = ch_api.apiCall(method, args);
 
 }
@@ -53,6 +55,9 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
+
+	string method = "cooperhewitt.labs.whatWouldMicahSay";
+	apiResponse = ch_api.apiCall(method, ch_api.getAPIArgs());
 
 }
 
